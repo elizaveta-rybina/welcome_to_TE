@@ -1,48 +1,38 @@
-import { useState } from "react";
+// ФАЙЛ ДЛЯ РЕДАКТИРОВАНИЯ И ТЕСТИРОВАНИЯ КОМПОНЕНТОВ ИЗ ТЕСТОВОГО ЗАДАНИЯ
 
-export const Block1 = ({ mouseEnterCallbak, imgSrc, imgAlt }) => {
-  const [isActive, setActive] = useState(false);
+import { useState } from 'react'
 
-  const mouseEnterHandler = () => {
-    setActive(true);
-    mouseEnterCallbak();
-  };
+const Block = ({ mouseEnterCallbak, children }) => {
+	const [isActive, setActive] = useState(false)
 
-  return (
-    <div onMouseEnter={mouseEnterHandler} className={isActive ? "active" : ""}>
-      <img src={imgSrc} alt={imgAlt} />
-    </div>
-  );
-};
+	const mouseEnterHandler = () => {
+		setActive(true)
+		mouseEnterCallbak()
+	}
 
-export const Block2 = ({ mouseEnterCallbak, content }) => {
-  const [isActive, setActive] = useState(false);
+	return (
+		<div onMouseEnter={mouseEnterHandler} className={isActive ? 'active' : ''}>
+			{children}
+		</div>
+	)
+}
 
-  const mouseEnterHandler = () => {
-    setActive(true);
-    mouseEnterCallbak();
-  };
+export const Block1 = ({ mouseEnterCallbak, imgSrc, imgAlt }) => (
+	<Block mouseEnterCallbak={mouseEnterCallbak}>
+		<img src={imgSrc} alt={imgAlt} />
+	</Block>
+)
 
-  return (
-    <div onMouseEnter={mouseEnterHandler} className={isActive ? "active" : ""}>
-      <p>{content}</p>
-    </div>
-  );
-};
+export const Block2 = ({ mouseEnterCallbak, content }) => (
+	<Block mouseEnterCallbak={mouseEnterCallbak}>
+		<p>{content}</p>
+	</Block>
+)
 
-export const Block3 = ({ mouseEnterCallbak, userData }) => {
-  const [isActive, setActive] = useState(false);
-
-  const mouseEnterHandler = () => {
-    setActive(true);
-    mouseEnterCallbak();
-  };
-
-  return (
-    <div onMouseEnter={mouseEnterHandler} className={isActive ? "active" : ""}>
-      <address>
-        country: {userData.country}, street: {userData.street}
-      </address>
-    </div>
-  );
-};
+export const Block3 = ({ mouseEnterCallbak, userData }) => (
+	<Block mouseEnterCallbak={mouseEnterCallbak}>
+		<address>
+			country: {userData.country}, street: {userData.street}
+		</address>
+	</Block>
+)
